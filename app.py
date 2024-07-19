@@ -26,8 +26,12 @@ app = Flask(__name__, static_folder='static', template_folder='templates')
 app.config['UPLOAD_FOLDER'] = "Uploads"
 CORS(app)
 
+#crendential
+load_dotenv()
+cendential_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+
 # Initialize Firebase Admin SDK
-cred = credentials.Certificate('./iv-curve-tracer-web-firebase-adminsdk-3i0ne-8dd09a7259.json')
+cred = credentials.Certificate(cendential_path)
 firebase_admin.initialize_app(cred, {
     'storageBucket': "iv-curve-tracer-web.appspot.com"
 })
