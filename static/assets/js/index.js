@@ -48,7 +48,7 @@ async function plotGraph(filename) {
     // console.log('Load Demand Data:', IVData);
 
     // Convert JSON object to array format required by ApexCharts
-    const formattedIVData = Object.entries(IVData).map(([voltage, current]) => {
+    const formattedIVData = Object.entries(IVData).map(([key, [voltage, current]]) => {
       return { x: parseFloat(voltage), y: current };
     });
 

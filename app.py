@@ -63,8 +63,8 @@ def dataPacketAvailable():
     # write to csv file -> convert from dictionary
     with open(temp_csv_filename, mode='w', newline='') as file:
         writer = csv.writer(file)
-        for key, value in dataPacket.items():
-            writer.writerow([key, value])
+        for key, valueList in dataPacket.items():
+            writer.writerow([key] + valueList)
 
     print("csv created")
 
@@ -92,8 +92,8 @@ def getDataPacket(csv_filename):
     csv_file = io.StringIO(csv_content.decode('utf-8'))
     reader = csv.reader(csv_file)
     for row in reader:
-        key = float(row[0])
-        value = float(row[1])
+        key = int(row[0])
+        value = [float(row[1]),float(row[2]),float(row[3])]
         dataPacket[key] = value
 
     return jsonify(dataPacket)
